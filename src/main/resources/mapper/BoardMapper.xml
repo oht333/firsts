@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oht.firsts.mapper.BoardMapper">
+
+	<resultMap id="BoardResultSet" type="Board">	
+		<result column="boardNo" property="boardNo" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="regdate" property="regdate" />
+		<result column="memId" property="memId" />
+	</resultMap>
+
+<!-- 	<insert id="writeBoard" parameterType="com.oht.firsts.vo.Board">
+		<![CDATA[
+			insert into board(
+				title
+				, content
+				, memId
+				) values (
+				#{title}
+				, #{content}
+				, #{memId});
+		
+		]]>	
+		
+	</insert> -->
+
+	<select id="boardList" resultMap="BoardResultSet"
+		parameterType="com.oht.firsts.vo.Board">
+		<![CDATA[
+			SELECT *
+			FROM
+			board
+		]]>
+	</select>
+	<!-- 여기에 있는 id명이 Mapper로 넘어가고 순서대로 DAO, Service, Controller로 넘어가는 것이다 -->
+
+ 	<select id="detailBoard" resultMap="BoardResultSet"
+		parameterType="board">
+		<![CDATA[
+			select * from board
+				where boardNo = #{boardNo};
+		]]>
+	</select> 
+	
+</mapper>
