@@ -21,9 +21,17 @@ public class BoardDAO {
 	public Board detailBoard(Board board) {		
 		return boardMapper.detailBoard(board);
 	}
-//	
-//	public int writeBoard(Board board) {
-//		return boardMapper.writeBoard(board);
-//		
-//	}
+	
+	public int writeBoard(Board board) {
+		return boardMapper.writeBoard(board);
+		
+	}
+	
+	public void deleteBoard(Board board) {
+		boardMapper.deleteBoard(board);
+	}
+	
+	public int editBoard(Board board) { 
+		return boardMapper.editBoard(board); 
+	}
 }

@@ -11,7 +11,7 @@
 		<result column="memId" property="memId" />
 	</resultMap>
 
-<!-- 	<insert id="writeBoard" parameterType="com.oht.firsts.vo.Board">
+ 	<insert id="writeBoard" parameterType="com.oht.firsts.vo.Board">
 		<![CDATA[
 			insert into board(
 				title
@@ -24,7 +24,7 @@
 		
 		]]>	
 		
-	</insert> -->
+	</insert> 
 
 	<select id="boardList" resultMap="BoardResultSet"
 		parameterType="com.oht.firsts.vo.Board">
@@ -44,4 +44,22 @@
 		]]>
 	</select> 
 	
+	<select id="deleteBoard" parameterType="board">
+		<![CDATA[
+			delete from board
+			where boardNo = #{boardNo};
+		]]>	
+	</select>
+
+	<!-- 게시글 수정 -->
+	<update id="editBoard" parameterType="board">
+
+		update BOARD
+			set
+				TITLE = #{title}
+				, CONTENT = #{content}
+			where 
+				BOARDNO = #{boardNo};
+				
+	</update>	
 </mapper>

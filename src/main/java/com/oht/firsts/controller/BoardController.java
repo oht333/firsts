@@ -27,15 +27,18 @@ public class BoardController {
 //	@Autowired
 //	private MemberService memberService;
 	
-//	@GetMapping("/delete")
-//	public String boardDelete() {
-//		System.out.println("삭제 페이지 들어옴");
-//		return "/boardDelete";
-//	}
+	@GetMapping("/deleteBoard") 
+	public String deleteBoard(Board board) { 
+		boardService.deleteBoard(board); 
+		
+		return "redirect:/list";
+	}
 	
 	@GetMapping("/list") //url주소 끝자리에 /list를 붙여서 이동
 	public ModelAndView boardList(ModelAndView mv) {
+		
 		ArrayList<Board> list = boardService.boardList();
+		
 		mv.addObject("list", list);
 		mv.setViewName("boardList"); //boardList.html로 페이지를 셋팅
 		return mv;
@@ -58,32 +61,43 @@ public class BoardController {
 		return mv;
 		
 	}	
-//	
-//	@GetMapping("/write")
-//	public String write_get() {
-//		return "writeBoard";
-//	}
-//
-//	@PostMapping("/writeBoard")
-//	public String writeBoard(Board board, HttpSession session, ModelAndView mv) {
-//		
-//		Member m = (Member) session.getAttribute("userNo");
-//		board.setMemId(m.getMemId());
-//		
-//		return "redirect:/list";
-//	}
 	
-//	@GetMapping("updateBoardPage")
-//	public String updateBoardPage(Board board, ModelAndView mv) {
-//		
-//		
-//		Board detailBoard = boardService.detailBoard(board);
-//		System.out.println(detailBoard);
-////		mv.addObject("detailBoard", detailBoard);
-////		mv.setViewName("boardUpdateView");
-//		
-////		int result = commonService.updateBoard(board);
-//		
-//		return "redirect:/";
-//	}	
+	@GetMapping("/write")	//List.html에서 '글쓰기'칸을 <a href="/write">로 연결시킴
+	public String write() {
+		System.out.println("들어옴");
+		return "writeBoard";
+	}
+
+	@PostMapping("/writeBoard")
+	public String writeBoard(Board board, HttpSession session, ModelAndView mv) {
+		
+		Member m = (Member) session.getAttribute("loginUser");
+		board.setMemId(m.getMemId());
+		
+		int bd = boardService.writeBoard(board);
+		
+		return "redirect:/list";
+	}
+	
+	
+	@GetMapping("/editPage") 
+	public ModelAndView updateBoardPage(Board board, ModelAndView mv) { 
+		Board detailBoard = boardService.detailBoard(board); 
+		mv.addObject("detailBoard", detailBoard);
+		/* mv.setViewName("boardUpdateView"); */
+		mv.setViewName("/boardEdit");
+		 
+		return mv; 
+	}
+		  
+		  
+	@PostMapping("/editBoard") 
+	public String editBoard(Board board, ModelAndView mv) { 
+		System.out.println(board);
+		  
+		int res = boardService.editBoard(board);
+		System.out.println(res);
+		  
+		return "redirect:/list"; 
+	}	
 }

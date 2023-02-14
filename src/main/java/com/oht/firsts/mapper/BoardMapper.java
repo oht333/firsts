@@ -11,6 +11,10 @@ public interface BoardMapper {
 	public ArrayList<Board> boardList();
 	
 	public Board detailBoard(Board board);
-//	
-//	public int writeBoard(Board board);
+	
+	public int writeBoard(Board board);
+	
+	public void deleteBoard(Board baord);
+	
+	public int editBoard(Board board);
 }

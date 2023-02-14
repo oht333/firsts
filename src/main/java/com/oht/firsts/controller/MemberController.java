@@ -38,7 +38,7 @@ public class MemberController {
 			
 			
 		}else {
-			return "/error";
+			return "/login";
 		}
 	}
 }

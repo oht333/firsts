@@ -51,7 +51,6 @@
                 <td class="b_title">내 용</td>
                 <td><textarea class="b_context" name="" id="" cols="40" rows="20" th:text="*{content}"></textarea></td>
             </tr>
-
         </table>
             
     </div>
@@ -65,27 +64,18 @@
 		
 			<script th:inline="javascript">		
 		
-
-	 		var no = /*[[${detailBoard.boardNo}]]*/ {};
+			/* 		var a = [[${session.loginUser.memId}]]; */
+	 		var a = /*[[${detailBoard.boardNo}]]*/ {};
 			
  		$(function(){
 			$("#left_btn").click(function(){
-				location.href = '/editPage?boardNo='+no;
+				location.href = '/updateBoardPage';
 			})
 			
 		})
 
- 		$(function(){
-			$("#center_btn").click(function(){
-				location.href = '/deleteBoard?boardNo='+no;
-			})
-			
-		})
 		
 	</script>
     
 </body>
 </html> 
-
-
-

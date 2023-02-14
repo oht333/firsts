@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<script>
+<!-- 	<script>
 		$(function(){
 			$("#boardTable>tbody>tr").click(function(){
 				location.href = '/detailBoard?boardNo=' + $(this).children(".boardNo").text();
@@ -19,7 +19,7 @@
 			})
 		})
 	
-	</script>
+	</script> -->
 	
 	
 	
@@ -38,20 +38,32 @@
       </tr>
     </thead>
     <tbody>
- 	            <tr th:each="list : ${list}">
+    
+<!--      	            <tr th:each="list : ${list}">
 		              <td th:text="${list.boardNo}" class="boardNo"></td>
 		              <td th:text="${list.title}"></td>
+		              <td class="text_ct"><a href="detailBoard?boardNo=${list.boardNo}">${list.boardNo}</a></td>
+		              <td th:text=${list.content}"></td>
+		              <td th:text="${list.regdate}"></td>
+		              <td th:text="${list.memId}"></td>
+	            </tr>  -->
+    
+    			
+ 	            <tr th:each="list : ${list}">
+		              <td th:text="${list.boardNo}" class="boardNo"></td>
+		              <td><a th:text="${list.title}" th:href="@{detailBoard(boardNo=${list.boardNo})}"></a></td>
 		              <!-- <td th:text=${list.content}"></td> -->
 		              <td th:text="${list.regdate}"></td>
 		              <td th:text="${list.memId}"></td>
 	            </tr> 
+	     </c:forEach>
     </tbody>
   </table>
 </div>
 
 <div class="btn-group, text-center">
-  <button type="button" class="btn btn-success">수정</button>
-  <button type="button" class="btn btn-success">삭제</button>
+  <button type="button" class="btn btn-success"
+          	onclick="location.href='write'">글쓰기</button>
 </div>
 
 </body>

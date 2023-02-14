@@ -20,9 +20,17 @@ public class BoardService {
 	public Board detailBoard(Board board) {
 		return boardDao.detailBoard(board);
 	}
-//	
-//	public int writeBoard(Board board) {
-//		return boardDao.writeBoard(board);
-//		
-//	}
+	
+	public int writeBoard(Board board) {
+		return boardDao.writeBoard(board);
+		
+	}
+
+	public void deleteBoard(Board board) {
+		boardDao.deleteBoard(board);
+	}
+	
+	public int editBoard(Board board) { 
+		return boardDao.editBoard(board); 
+	}
 }
