@@ -26,6 +26,8 @@
 		
 	</insert> 
 
+<!-- id는 지금까지 작성했던 메서드의 이름으로 기재를 한다. 그리고 parametertype은 vo로 설정 -->
+
 	<select id="boardList" resultMap="BoardResultSet"
 		parameterType="com.oht.firsts.vo.Board">
 		<![CDATA[
